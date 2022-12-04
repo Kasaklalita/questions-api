@@ -1,11 +1,10 @@
 import React from "react";
+import MainNavbar from "./components/layout/MainNavbar";
 
 function App() {
   return (
     <div className="App">
-      <h1 className="title has-text-centered">
-        The Way To Become A Python Developer
-      </h1>
+      <MainNavbar />
     </div>
   );
 }
