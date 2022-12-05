@@ -1,5 +1,11 @@
-from django.http import JsonResponse
+from .serializers import QuestionSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Category, Question
 
 
-def get_questions_by_categories(request):
-    return JsonResponse("{all_questions_by_categories}", safe=False)
+class GetAllQuestions(APIView):
+    def get(self, request):
+        questions = Question.objects.all()
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
