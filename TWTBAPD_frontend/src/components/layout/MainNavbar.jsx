@@ -4,7 +4,7 @@ import djangoLogo from "../../assets/django-logo.svg";
 
 const MainNavbar = () => {
   return (
-    <nav className="navbar is-light">
+    <nav className="navbar has-background-dark">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
           <img src={pythonLogo} className="image is-32x32" />
