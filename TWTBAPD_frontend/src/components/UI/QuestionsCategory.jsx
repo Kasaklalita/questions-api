@@ -7,7 +7,9 @@ const QuestionsCategory = ({ title, subtitle }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       await axios
-        .get("http://127.0.0.1:8000/api/v1/get-all-questions/")
+        .get("http://127.0.0.1:8000/api/v1/get-questions-by-category/", {
+          params: { category_name: title },
+        })
         .then((response) => {
           setQuestions(response.data);
         })
