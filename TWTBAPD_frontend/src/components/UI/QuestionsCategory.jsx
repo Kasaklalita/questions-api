@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const QuestionsCategory = ({ title, subtitle }) => {
+const QuestionsCategory = ({ title, subtitle, slug }) => {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       await axios
         .get("get-questions-by-category/", {
-          params: { category_name: title },
+          params: { category_slug: slug },
         })
         .then((response) => {
           setQuestions(response.data);

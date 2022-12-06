@@ -21,9 +21,9 @@ class GetAllCategories(APIView):
 
 class GetQuestionsByCategory(APIView):
     def get(self, request):
-        category_name = request.GET["category_name"]
-        if category_name:
-            category = Category.objects.get(name=category_name)
+        category_slug = request.GET['category_slug']
+        if category_slug:
+            category = Category.objects.get(slug=category_slug)
             questions = Question.objects.all().filter(category=category)
             serializer = QuestionSerializer(questions, many=True)
             return Response(serializer.data)

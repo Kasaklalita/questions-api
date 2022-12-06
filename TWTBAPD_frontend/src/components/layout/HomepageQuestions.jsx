@@ -26,7 +26,7 @@ const HomepageQuestions = () => {
           <QuestionsCategory
             title={category.name}
             subtitle={category.description}
-            questions={["h1", "h2"]}
+            slug={category.slug}
             key={category.id}
           />
         );
