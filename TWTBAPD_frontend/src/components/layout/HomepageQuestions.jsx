@@ -8,7 +8,7 @@ const HomepageQuestions = () => {
   useEffect(() => {
     const fetchAllCategories = async () => {
       await axios
-        .get("http://127.0.0.1:8000/api/v1/get-all-categories/")
+        .get("get-all-categories/")
         .then((response) => {
           setCategories(response.data);
         })

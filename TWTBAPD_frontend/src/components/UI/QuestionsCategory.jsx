@@ -7,7 +7,7 @@ const QuestionsCategory = ({ title, subtitle }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       await axios
-        .get("http://127.0.0.1:8000/api/v1/get-questions-by-category/", {
+        .get("get-questions-by-category/", {
           params: { category_name: title },
         })
         .then((response) => {
@@ -30,7 +30,7 @@ const QuestionsCategory = ({ title, subtitle }) => {
             {questions.map((question) => {
               return (
                 <li key={question.id}>
-                  <a>{question["question_text"]}</a>
+                  <a href={question.link}>{question["question_text"]}</a>
                 </li>
               );
             })}
