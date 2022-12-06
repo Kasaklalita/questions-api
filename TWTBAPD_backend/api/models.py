@@ -15,8 +15,8 @@ class Category(models.Model):
 class Question(models.Model):
     category = models.ForeignKey(Category, related_name='questions', on_delete=models.CASCADE)
     question_text = models.CharField(max_length=128)
-    answer = models.TextField()
-    link = models.CharField(max_length=128)
+    answer = models.TextField(blank=True)
+    link = models.CharField(max_length=128, blank=True, null=True)
     dateAdded = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
