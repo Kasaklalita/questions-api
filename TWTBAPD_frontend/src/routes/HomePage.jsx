@@ -1,11 +1,12 @@
 import React from "react";
 import HomepageQuestions from "../components/layout/HomepageQuestions";
 import IntroductionSection from "../components/layout/IntroductionSection";
+import {Link} from "react-router-dom";
 
 function HomePage() {
 	return (
-		<div className="column is-9 content">
-			<IntroductionSection/>
+		<div>
+			<IntroductionSection />
 			<div>
 				<p className="block">
 					Вас ждет собеседование на должность Python-разработчика, и вы хотите
@@ -29,7 +30,7 @@ function HomePage() {
 					на собеседовании по Python.
 				</p>
 			</div>
-			<HomepageQuestions/>
+			<HomepageQuestions />
 		</div>
 	);
 }
