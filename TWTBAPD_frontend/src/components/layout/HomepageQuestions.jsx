@@ -1,38 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import QuestionsCategory from "../UI/QuestionsCategory";
 
 const HomepageQuestions = () => {
-  const [questions, setQuestions] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const fetchAllQuestions = async () => {
+    const fetchAllCategories = async () => {
       await axios
-        .get("http://127.0.0.1:8000/api/v1/get-all-questions/")
+        .get("http://127.0.0.1:8000/api/v1/get-all-categories/")
         .then((response) => {
-          setQuestions(response.data);
+          setCategories(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
     };
-    fetchAllQuestions();
+    fetchAllCategories();
   }, []);
 
   return (
     <div className="content">
-      <div className="box content">
-        <h1>Общие вопросы по Python</h1>
-        <p>В этой секции находятся общие вопросы об основах Python</p>
-        <ol>
-          {questions.map((question) => {
-            return (
-              <li key={question.id}>
-                <a>{question["question_text"]}</a>
-              </li>
-            );
-          })}
-        </ol>
-      </div>
+      {categories.map((category) => {
+        return (
+          <QuestionsCategory
+            title={category.name}
+            subtitle={category.description}
+            questions={["h1", "h2"]}
+            key={category.id}
+          />
+        );
+      })}
     </div>
   );
 };
