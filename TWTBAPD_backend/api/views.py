@@ -29,3 +29,14 @@ class GetQuestionsByCategory(APIView):
             return Response(serializer.data)
         else:
             raise Http404
+
+
+class GetQuestionDetail(APIView):
+    def get(self, request):
+        question_id = request.GET['question_id']
+        if question_id:
+            question = Question.objects.get(pk=question_id)
+            serializer = QuestionSerializer(question)
+            return Response(serializer.data)
+        else:
+            raise Http404

@@ -1,18 +1,6 @@
 from rest_framework import serializers
 from .models import Question, Category
 
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = (
-            "id",
-            "question_text",
-            "answer",
-            "link",
-        )
-
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -22,4 +10,16 @@ class CategorySerializer(serializers.ModelSerializer):
             "description",
             "slug",
             "get_absolute_url"
+        )
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = (
+            "id",
+            "category",
+            "question_text",
+            "answer",
+            "link",
         )

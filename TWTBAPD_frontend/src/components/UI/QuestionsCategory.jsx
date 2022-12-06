@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const QuestionsCategory = ({ title, subtitle, slug }) => {
   const [questions, setQuestions] = useState([]);
@@ -23,14 +24,14 @@ const QuestionsCategory = ({ title, subtitle, slug }) => {
   return (
     <div className="content">
       <div className="box content">
-        <h1>{title}</h1>
+        <Link to={slug}><h1 className="title">{title}</h1></Link>
         <p className="subtitle">{subtitle}</p>
         {questions.length > 0 ? (
           <ol>
             {questions.map((question) => {
               return (
                 <li key={question.id}>
-                  <a href={question.link}>{question["question_text"]}</a>
+                  <Link href={`general-questions/`}>{question["question_text"]}</Link>
                 </li>
               );
             })}

@@ -23,21 +23,25 @@ export default function CategoryPage() {
 	}, []);
 
 	return (
-		<div className="p-5 content">
-			<h1 className="title">{category}</h1>
-			{questions.length ? (
-				<ol>
-					{questions.map((question) => {
-						return (
-							<li key={question.id}>
-								<Link to="/">{question.question_text}</Link>
-							</li>
-						);
-					})}
-				</ol>
-			) : (
-				<p className="block">К сожалению, вопросов по этой теме пока нет</p>
-			)}
+		<div className="p-5">
+			<div className="content">
+				<h1 className="title">{category}</h1>
+				{questions.length ? (
+					<ol>
+						{questions.map((question) => {
+							return (
+								<li key={question.id}>
+									<Link to={`/questions/${question.id}`}>
+										{question.question_text}
+									</Link>
+								</li>
+							);
+						})}
+					</ol>
+				) : (
+					<p className="block">К сожалению, вопросов по этой теме пока нет</p>
+				)}
+			</div>
 		</div>
 	);
 }
