@@ -22,11 +22,12 @@ export default function QuestionDetailPage() {
 			});
 	}, []);
 	return (
-		<div className="QuestionDetailPage">
-			<h1 className="title">
-				{category}, {question_id}
-			</h1>
-      <p>{question.question_text}</p>
+		<div className="box content">
+			<h2>
+				{question.question_text}
+			</h2>
+      {question.answer ? <p>{question.answer}</p> : <p>К сожалению, ответ на этот вопрос пока что не добавлен!</p> }
+      
 		</div>
 	);
 }

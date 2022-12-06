@@ -9,12 +9,21 @@ function App() {
 	return (
 		<div className="App">
 			<MainNavbar />
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/:category" element={<CategoryPage />} />
-				<Route path="/:category/:question_id" element={<QuestionDetailPage />} />
-				{/* <Route path="/:category/:question" element={<CategoryPage />} /> */}
-			</Routes>
+			<div className="columns m-4">
+				<div className="column is-2"></div>
+				<div className="column is-8">
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/:category" element={<CategoryPage />} />
+						<Route
+							path="/:category/:question_id"
+							element={<QuestionDetailPage />}
+						/>
+						{/* <Route path="/:category/:question" element={<CategoryPage />} /> */}
+					</Routes>
+				</div>
+				<div className="column is-2"></div>
+			</div>
 		</div>
 	);
 }

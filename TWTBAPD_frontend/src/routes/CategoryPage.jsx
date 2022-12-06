@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import QuestionItem from "../components/UI/QuestionItem";
 
 export default function CategoryPage() {
 	const { category } = useParams();
@@ -31,9 +32,7 @@ export default function CategoryPage() {
 						{questions.map((question) => {
 							return (
 								<li key={question.id}>
-									<Link to={`/questions/${question.id}`}>
-										{question.question_text}
-									</Link>
+									<QuestionItem question={question} />
 								</li>
 							);
 						})}
