@@ -9,11 +9,9 @@ const QuestionsCategory = ({ title, subtitle, slug }) => {
 	useEffect(() => {
 		const fetchQuestions = async () => {
 			await axios
-				.get("get-questions-by-category/", {
-					params: { category_slug: slug },
-				})
+				.get(("categories/" + slug))
 				.then((response) => {
-					setQuestions(response.data);
+					setQuestions(response.data.questions);
 				})
 				.catch((error) => {
 					console.log(error);

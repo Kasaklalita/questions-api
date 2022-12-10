@@ -20,22 +20,20 @@ class GetAllCategories(APIView):
 
 
 class GetQuestionsByCategory(APIView):
-    def get(self, request):
-        category_slug = request.GET['category_slug']
+    def get(self, request, category_slug):
         if category_slug:
             category = Category.objects.get(slug=category_slug)
             questions = Question.objects.all().filter(category=category)
             serializer = QuestionSerializer(questions, many=True)
-            return Response(serializer.data)
+            return Response({"title": category.name, "questions": serializer.data})
         else:
             raise Http404
 
 
 class GetQuestionDetail(APIView):
-    def get(self, request):
-        question_id = request.GET['question_id']
-        if question_id:
-            question = Question.objects.get(pk=question_id)
+    def get(self, request, id):
+        if id:
+            question = Question.objects.get(pk=id)
             serializer = QuestionSerializer(question)
             return Response(serializer.data)
         else:
