@@ -38,3 +38,13 @@ class GetQuestionDetail(APIView):
             return Response(serializer.data)
         else:
             raise Http404
+
+
+class RecentlyViewed(APIView):
+    def get(rself, request):
+        if 'recently_viewed' in request.session:
+            request.session += ['1']
+            return Response({'RECENTLYvIEWED': 1})
+        else:
+            request.session = ['0']
+
