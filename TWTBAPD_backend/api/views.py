@@ -1,8 +1,8 @@
-from .serializers import QuestionSerializer, CategorySerializer
+from .serializers import QuestionSerializer, CategorySerializer, VideoSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Category, Question
-from django.http import Http404
+from .models import Category, Question, Video
+from django.http import Http404, JsonResponse
 
 
 class GetAllQuestions(APIView):
@@ -41,10 +41,16 @@ class GetQuestionDetail(APIView):
 
 
 class RecentlyViewed(APIView):
-    def get(rself, request):
+    def get(self, request):
         if 'recently_viewed' in request.session:
             request.session += ['1']
             return Response({'RECENTLYvIEWED': 1})
         else:
             request.session = ['0']
 
+
+class Videos(APIView):
+    def get(self, request):
+        videos = Video.objects.all()
+        serializer = VideoSerializer(videos, many=True)
+        return Response(serializer.data)
