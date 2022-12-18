@@ -5,26 +5,32 @@ import RecommendedVideo from "../UI/RecommendedVideo";
 const RecommendedVideos = () => {
   const [videos, setVideos] = useState([]);
 
+  const fetchVideos = async () => {
+    await axios
+      .get("videos/", {
+        params: {
+          'random': true,
+          'max-videos': 3
+        }
+      })
+      .then((response) => {
+        setVideos(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
   useEffect(() => {
-    const fetchVideos = async () => {
-      await axios
-        .get("videos/")
-        .then((response) => {
-          console.log(response.data);
-          setVideos(response.data);
-        })
-        .catch((error) => console.log(error));
-    };
     fetchVideos();
   }, []);
 
   return (
     <div className="content">
-      <h4>Видео для подготовки:</h4>
+      <div className="is-flex is-justify-content-space-between">
+        <h4>Видео для подготовки:</h4>
+        <a onClick={fetchVideos}>Обновить</a>
+      </div>
       {videos.map((video) => {
-        return (
-          <RecommendedVideo link={video.link} key={video.id}/>
-        );
+        return <RecommendedVideo link={video.link} key={video.id} />;
       })}
     </div>
   );

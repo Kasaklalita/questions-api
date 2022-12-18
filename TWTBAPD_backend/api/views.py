@@ -51,6 +51,20 @@ class RecentlyViewed(APIView):
 
 class Videos(APIView):
     def get(self, request):
-        videos = Video.objects.all()
-        serializer = VideoSerializer(videos, many=True)
-        return Response(serializer.data)
+        try:
+            getRandomVideos = bool(request.GET.get('random', False))
+            videosQuantity = int(request.GET.get('max-videos', 0))
+            videos = None
+            serializer = None
+            if getRandomVideos:
+                videos = Video.objects.all()[:videosQuantity] if videosQuantity else Video.objects.all()
+            else:
+                videos = Video.objects.all().order_by('-id')[:videosQuantity] if videosQuantity else Video.objects.all().order_by('-id')
+            serializer = VideoSerializer(videos, many=True)
+            return Response(serializer.data)
+        except:
+            print('Something went wrong with the parameters')
+            videos = Video.objects.all().order_by('-id')
+            serializer = VideoSerializer(videos, many=True)
+            return Response(serializer.data)
+        
