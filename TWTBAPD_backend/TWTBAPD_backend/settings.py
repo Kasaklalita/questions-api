@@ -1,5 +1,6 @@
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = "testkey"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,11 +32,7 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:5173',
-    "http://192.168.65.207:5173",
-    "http://192.168.1.25:5173"
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,3 +117,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
+
