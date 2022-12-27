@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'TWTBAPD_backend.urls'
+ROOT_URLCONF = 'Questions_API.urls'
 
 TEMPLATES = [
     {
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'TWTBAPD_backend.wsgi.application'
+WSGI_APPLICATION = 'Questions_API.wsgi.application'
 
 
 # Database
