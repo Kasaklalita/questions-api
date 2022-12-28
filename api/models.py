@@ -27,7 +27,7 @@ class Question(models.Model):
     question_text = models.CharField(max_length=128)
     answer = models.TextField(blank=True)
     link = models.CharField(max_length=128, blank=True, null=True)
-    dateAdded = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ("category",)
